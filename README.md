@@ -1,4 +1,4 @@
-##Zadanie rekrutacyjne - "Kalendarz urlopów"
+Zadanie rekrutacyjne - "Kalendarz urlopów"
 
 Kroki uruchamiania projektu: 
   - yarn install
