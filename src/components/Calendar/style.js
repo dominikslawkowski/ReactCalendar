@@ -7,6 +7,7 @@ const fadein = keyframes`
 `;
 
 export const Day = styled.div`
+    position: relative;
     width: 100%;
     height: 100%;
     background-color: ${props => (props.day === 'Saturday' || props.day === 'Sunday') ? '#efefef' : 'white'};
@@ -52,4 +53,12 @@ export const CurrentMounth = styled.div`
     > span {
         color: #a8a8a8;
     }
+`;
+
+export const Line = styled.div`
+    width: calc(100% - 10px);
+    height: 2px;
+    margin-bottom: 20px;
+    background-color: ${props => props.color};
+    font-size: 12px;
 `;

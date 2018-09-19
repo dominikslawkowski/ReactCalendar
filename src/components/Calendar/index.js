@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { Day, Number, Button, CurrentMounth } from './style';
+import { Day, Number, Button, CurrentMounth, Line } from './style';
 import dateFns, { addMonths } from 'date-fns';
 import { IconPicker } from '../index';
 import { connect } from 'react-redux';
@@ -54,6 +54,17 @@ class Calendar extends React.Component {
        return this.state.firstDayOfMounth.getDay();
     }
 
+    showVacation(year, month, day){
+        const currentDate = new Date(year, month + 1, day - 1);
+        console.log('curr: ', currentDate);
+        return this.props.date.map((element, index) => {
+            return dateFns.isWithinRange(
+                currentDate, element.from, element.to
+            ) ? <Line key={index} color={element.color}>{element.name}</Line> : null;
+        })
+
+    }
+
     showCalendar(){
         let numer = 1;
         return(
@@ -62,9 +73,9 @@ class Calendar extends React.Component {
                     <Day 
                     visible={element.thisMounth} 
                     day={element.day} 
-                    key={index}
-                    date={new Date(element.year, element.month, element.day)}>
-                        <Number>{element.thisMounth ? numer++ : null}</Number> 
+                    key={index}>
+                        <Number>{element.thisMounth ? numer++ : null}</Number>
+                        {this.showVacation(element.year, element.month, numer)}
                     </Day>
                     );
             })
