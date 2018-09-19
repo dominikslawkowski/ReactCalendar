@@ -1,4 +1,3 @@
-export { Home } from './Home/Home';
-export { Reservation } from './Reservation/Reservation';
-export { Statistics } from './Statistics/Statistics';
-export { Navigation } from './Navigation/Navigation'
+export { Navigation } from './Navigation/index';
+export { IconPicker } from './IconPicker/index';
+export { Modal } from './Modal/index';
