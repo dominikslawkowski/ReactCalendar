@@ -44,9 +44,9 @@ export const Container = styled.div`
 
 export const Message = styled.div`
     width: 250px;
-    height: 100px;
+    height: 60px;
     padding: 5px;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 10px;
+    margin-top: 50px;
 `;

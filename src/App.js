@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route} from 'react-router-dom';
-import { Navigation } from './components/index';
+import { Navigation, Home } from './components/index';
 import Calendar from './components/Calendar';
 import Reservation from './components/Reservation';
-import Home from './components/Home';
 import './App.css';
 
 class App extends Component {
@@ -13,11 +12,11 @@ class App extends Component {
       <Router>
         <div className="container">
             <Navigation />
-              <div className="main-container">
-                <Route exact path="/" component={Home} />
-                <Route path="/calendar" component={Calendar} />
-                <Route path="/reservation" component={Reservation} />
-              </div>
+            <div className="main-container">
+              <Route exact path="/" component={Home} />
+              <Route path="/calendar" component={Calendar} />
+              <Route path="/reservation" component={Reservation} />
+            </div>
         </div>
       </Router>
     );

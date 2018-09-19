@@ -1,16 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Container, Title, Subtitle, Desc, Button } from './style';
-import { connect } from 'react-redux';
+import { Container, Title, Subtitle, Button } from './style';
  
-class Home extends React.Component{
+export class Home extends React.Component{
 
     render() {
     return(
         <Container>
             <Title>Korpex Calendar</Title>
-            <Subtitle>Zarezerwuj Swój urlop</Subtitle>
-            <Desc>i zacznij planować wakacje juz teraz :)</Desc>
+            <Subtitle>Book the date of your holiday</Subtitle>
             <Link to="/reservation">
               <Button>Reservation</Button>
             </Link>
@@ -18,11 +16,3 @@ class Home extends React.Component{
     );
 }
 };
-
-const mapStateToProps = state => {
-    return{
-       date: state.newDate
-    }
-}
-
-export default connect(mapStateToProps)(Home);

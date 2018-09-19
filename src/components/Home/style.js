@@ -35,7 +35,7 @@ export const Desc = styled.div`
 export const Button = styled.button`
     height: 30px;
     width: 170px;
-    margin-top: 10px;
+    margin-top: 25px;
     color: white;
     font-size: 15px;
     letter-spacing: 1px;

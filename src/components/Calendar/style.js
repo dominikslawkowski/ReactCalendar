@@ -17,10 +17,6 @@ export const Day = styled.div`
     transition: all .05s linear;
     animation: ${fadein} .1s linear ${props => props.delay};
     opacity: ${props => props.visible ? '1': '.4'}
-
-    :hover{
-        background-color: ${props => props.visible ? '#ABDCFF' : ''};
-    }
 `;
 
 export const Number = styled.div`
@@ -60,5 +56,25 @@ export const Line = styled.div`
     height: 2px;
     margin-bottom: 20px;
     background-color: ${props => props.color};
+    font-size: 11px;
+`;
+
+export const Data = styled.div`
     font-size: 12px;
+    cursor: pointer;
+    > span{
+        display: inline-block;
+        font-size: 11px;
+        color: ${props => props.color};
+        opacity: 0;
+        cursor: pointer;
+        font-weight: 800;
+        margin-left: 5px;
+        transform: translateX(-20px);
+        transition: all .2s linear;
+    }
+    :hover > span {
+        opacity: 1;
+        transform: translateX(0);
+    }
 `;

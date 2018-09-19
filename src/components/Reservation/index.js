@@ -16,6 +16,7 @@ class Reservation extends React.Component {
             team: null,
             from: null,
             to: null,
+            color: 'red',
             isOpen: false
         }
         this.handleChange = this.handleChange.bind(this);
@@ -28,8 +29,13 @@ class Reservation extends React.Component {
       }    
     
     handleChange = (event) => {
-      this.setState({[event.target.name]: event.target.value});
-      console.log(this.state);
+        console.log(this.state);
+        this.setState({[event.target.name]: event.target.value});
+    }
+
+    handleChangeDate = (event) =>{
+        this.setState({[event.target.name]: dateFns.parse(event.target.value)});
+        console.log(this.state);
     }
 
     renderInput(field){
@@ -54,9 +60,10 @@ class Reservation extends React.Component {
             <FieldSelect error={(field.meta.touched && field.meta.error) ? 'bad' : 'good'}>
                 <select {...field.input}>
                     <option>{field.placeholder}</option>
-                    <option value="devTeam1">Dev Team 1</option>
-                    <option value="devTeam2">Dev Team 2</option>
-                    <option value="backTeam1">Back Team 1</option>
+                    <option value="Frontend 1">Frontend 1</option>
+                    <option value="Frontend 2">Frontend 2</option>
+                    <option value="Backend 1">Backend 1</option>
+                    <option value="Testers 1">Testers 1</option>
                 </select>
                 {field.meta.touched && field.meta.error && <span>{field.meta.error}</span>}
             </FieldSelect>
@@ -69,17 +76,16 @@ class Reservation extends React.Component {
         });
         
         return sameTeam.some(element => {
-            console.log(element.from, values.from);
             return dateFns.areRangesOverlapping(
-                 element.from, element.to, dateFns.parse(values.from), dateFns.parse(values.to)
+                 element.from, element.to, values.from, values.to
               );
         })
     }
 
     onSubmit(values){
         const valid = this.checkingDates(values);
-
         if(!valid){
+            values.color = this.state.color;
             this.props.addDate(values);
             this.props.history.push('/calendar');
         }else{
@@ -124,15 +130,16 @@ class Reservation extends React.Component {
                         type="date" 
                         component={this.renderInput} 
                         index={3}
-                        onChange={event => this.handleChange(event)}
+                        onChange={event => this.handleChangeDate(event)}
                         placeholder="From" 
                         justify="right" 
                     />
                     <Field 
-                        name="to" type="date" 
+                        name="to" 
+                        type="date" 
                         component={this.renderInput} 
                         index={4}
-                        onChange={event => this.handleChange(event)}
+                        onChange={event => this.handleChangeDate(event)}
                         placeholder="To"
                         justify="left"
                     />
@@ -177,12 +184,6 @@ const mapStateToProps = state => {
         date: state.date
     }
 }
-
-// const mapDispatchToProps = dispatch =>{
-//     return bindActionCreators({
-//         addDate: addDate,
-//     }, dispatch);
-// }
 
 export default reduxForm({
     validate,
