@@ -14,7 +14,7 @@ export class Modal extends React.Component {
                 {this.props.children}
             </Message>
             <button onClick={this.props.onClose}>
-            Close
+              Close
             </button>
         </Container>
       </Background>

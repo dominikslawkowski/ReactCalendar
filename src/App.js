@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route} from 'react-router-dom';
 import { Navigation, Home } from './components/index';
-import Calendar from './components/Calendar';
-import Reservation from './components/Reservation';
+import Calendar from './containers/Calendar';
+import Reservation from './containers/Reservation';
 import './App.css';
 
 class App extends Component {
