@@ -1,10 +1,10 @@
-import React, { Fragment } from 'react';
-import { Field, reduxForm } from 'redux-form'
+import React from 'react';
+import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { addDate } from '../../action/index';
 import dateFns from 'date-fns';
-import { Modal } from '../index';
-import { Form, Title, FieldInput, FieldSelect, Button } from './style';
+import { Modal } from '../../components/index';
+import { Form, Title, FieldInput, FieldSelect, Button, MainContainer } from './style';
 
 class Reservation extends React.Component {
 
@@ -20,6 +20,7 @@ class Reservation extends React.Component {
             isOpen: false
         }
         this.handleChange = this.handleChange.bind(this);
+        this.renderSelect = this.renderSelect.bind(this);
     };
 
     toggleModal = () => {
@@ -29,13 +30,11 @@ class Reservation extends React.Component {
       }    
     
     handleChange = (event) => {
-        console.log(this.state);
         this.setState({[event.target.name]: event.target.value});
     }
 
     handleChangeDate = (event) =>{
         this.setState({[event.target.name]: dateFns.parse(event.target.value)});
-        console.log(this.state);
     }
 
     renderInput(field){
@@ -60,10 +59,9 @@ class Reservation extends React.Component {
             <FieldSelect error={(field.meta.touched && field.meta.error) ? 'bad' : 'good'}>
                 <select {...field.input}>
                     <option>{field.placeholder}</option>
-                    <option value="Frontend 1">Frontend 1</option>
-                    <option value="Frontend 2">Frontend 2</option>
-                    <option value="Backend 1">Backend 1</option>
-                    <option value="Testers 1">Testers 1</option>
+                    {this.props.teams.map((element, index) => 
+                        <option value={element} key={index}>{element}</option>
+                    )}
                 </select>
                 {field.meta.touched && field.meta.error && <span>{field.meta.error}</span>}
             </FieldSelect>
@@ -83,6 +81,7 @@ class Reservation extends React.Component {
     }
 
     onSubmit(values){
+        console.log(values);
         const valid = this.checkingDates(values);
         if(!valid){
             values.color = this.state.color;
@@ -95,10 +94,9 @@ class Reservation extends React.Component {
 
     render(){
         const { handleSubmit } = this.props;
-    
         return(
-            <Fragment>
-                <Form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+            <MainContainer>
+                  <Form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
                     <Title>Korpex Calendar</Title>
                     <Field 
                         name="name" 
@@ -147,11 +145,10 @@ class Reservation extends React.Component {
                 </Form>
                 <Modal 
                     show={this.state.isOpen}
-                    onClose={this.toggleModal}
-                >
+                    onClose={this.toggleModal}>
                    Your teammates took a vacation in same date range :(
                 </Modal>
-            </Fragment>
+            </MainContainer>
         )
     }
 }
@@ -181,7 +178,8 @@ const validate = (value) => {
 
 const mapStateToProps = state => {
     return{
-        date: state.date
+        date: state.date,
+        teams: state.team
     }
 }
 

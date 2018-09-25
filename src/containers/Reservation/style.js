@@ -151,3 +151,11 @@ export const Button = styled.button`
         transform: scale(1.1);
     }
 `;
+
+export const MainContainer = styled.div`
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: 10px repeat(7, 80px);
+    grid-gap: 15px 15px;
+    padding: 50px;
+`;

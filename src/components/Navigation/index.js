@@ -11,10 +11,7 @@ export class Menu extends React.Component {
           <Nav>
             <Span>KorpeX</Span>
             <Border />
-            <StyledLink 
-                to="/" 
-                currentpath={this.props.location.pathname}
-            >
+            <StyledLink to="/" currentpath={this.props.location.pathname}>
                 <IconPicker 
                     name="home" 
                     width={20} 
@@ -22,28 +19,31 @@ export class Menu extends React.Component {
                 /> 
                 <span>Home</span>
             </StyledLink>
-            <StyledLink 
-                to="/calendar" 
-                currentpath={this.props.location.pathname}
-            >
+            <StyledLink to="/calendar" currentpath={this.props.location.pathname}>
                 <IconPicker 
-                    name="reservation" 
+                    name="calendar" 
                     width={20} 
                     height={20} 
                 /> 
                 <span>Calendar</span>
             </StyledLink>
-            <StyledLink 
-                to="/reservation" 
-                currentpath={this.props.location.pathname}
-            >
+            <StyledLink to="/reservation" currentpath={this.props.location.pathname}>
                  <IconPicker 
-                    name="stats" 
+                    name="reservation"
                     width={20} 
                     height={20} 
                     currentPath={this.props.location.pathname}
                 /> 
                 <span>Reservation</span>
+            </StyledLink>
+            <StyledLink to="/teams" currentpath={this.props.location.pathname}>
+                 <IconPicker 
+                    name="teams" 
+                    width={20} 
+                    height={20} 
+                    currentPath={this.props.location.pathname}
+                /> 
+                <span>Teams</span>
             </StyledLink>
           </Nav>
         )

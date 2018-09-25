@@ -8,16 +8,16 @@ export class Modal extends React.Component {
     }
 
     return (
-      <Background>
-        <Container>
-            <Message>
-                {this.props.children}
-            </Message>
-            <button onClick={this.props.onClose}>
-              Close
-            </button>
-        </Container>
-      </Background>
+        <Background>
+          <Container>
+              <Message marginTop={this.props.marginTop} marginBottom={this.props.marginBottom}>
+                  {this.props.children}
+              </Message>
+              <button onClick={this.props.onClose}>
+                Close
+              </button>
+          </Container>
+        </Background>
     );
   }
 }

@@ -22,7 +22,7 @@ export const Container = styled.div`
     text-align: center;
     transition: all .1s linear;
     >button {
-        margin-top: 30px;
+        margin-top: 15px;
         height: 30px;
         width: 150px;
         color: white;
@@ -48,5 +48,6 @@ export const Message = styled.div`
     padding: 5px;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 50px;
+    margin-top: ${props => props.marginTop ? props.marginTop : '50px'};
+    margin-bottom: ${props => props.marginBottom ? props.marginBottom : ''};
 `;

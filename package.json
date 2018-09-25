@@ -4,14 +4,19 @@
   "private": true,
   "dependencies": {
     "date-fns": "^1.29.0",
+    "enzyme": "^3.6.0",
+    "enzyme-adapter-react-16": "^1.5.0",
+    "enzyme-redux": "^0.2.1",
     "react": "^16.5.0",
     "react-addons-css-transition-group": "^15.6.2",
     "react-dom": "^16.5.0",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.5",
+    "react-test-renderer": "^16.5.2",
     "redux": "^4.0.0",
     "redux-form": "^7.4.2",
+    "redux-test-utils": "^0.2.2",
     "styled-components": "^3.4.6"
   },
   "scripts": {

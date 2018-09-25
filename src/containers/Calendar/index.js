@@ -1,7 +1,7 @@
-import React, { Fragment } from 'react';
-import { Day, Number, Button, CurrentMounth, Line, Data } from './style';
+import React from 'react';
+import { Day, Number, Button, CurrentMounth, Line, Data, MainContainer } from './style';
 import dateFns, { addMonths } from 'date-fns';
-import { IconPicker } from '../index';
+import { IconPicker } from '../../components/index';
 import { connect } from 'react-redux';
 
 const week = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
@@ -46,7 +46,6 @@ class Calendar extends React.Component {
                  thisMounth: false
             });
         }
-        console.log('daty: ', this.props.date);
         return table;
     }
 
@@ -91,7 +90,7 @@ class Calendar extends React.Component {
     
     render(){
         return(
-            <Fragment>
+            <MainContainer>
                 {week.map((element, index) => {
                     return <div key={index}>{element}</div>;
                 })}
@@ -106,7 +105,7 @@ class Calendar extends React.Component {
                 <Button next={true} onClick={() => this.changeMounth(true)}>
                     <IconPicker name="arrow-right" width={20} height={20}/>
                 </Button>
-            </Fragment>
+            </MainContainer>
         )
     }
 
