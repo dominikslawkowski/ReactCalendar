@@ -6,8 +6,8 @@ import dateFns from 'date-fns';
 import { Modal } from '../../components/index';
 import { Form, Title, FieldInput, FieldSelect, Button, MainContainer } from './style';
 
-class Reservation extends React.Component {
-
+export class Reservation extends React.Component {
+    
     constructor(props){
         super(props);
         this.state = {
@@ -104,25 +104,20 @@ class Reservation extends React.Component {
                         component={this.renderInput} 
                         index={1} 
                         placeholder="Name" 
-                        onChange={this.handleChange}
-                    />
+                        onChange={this.handleChange}/>
                     <Field 
                         name="surname" 
                         type="text" 
                         component={this.renderInput} 
                         index={2} 
                         placeholder="Surname" 
-                        onChange={event => this.handleChange(event)}
-                    />
+                        onChange={event => this.handleChange(event)}/>
                     <Field 
                         name="team" 
                         type="select" 
                         component={this.renderSelect}
                         onChange={event => this.handleChange(event)}
-                        placeholder="Choose Your team"
-                    >
-                       
-                    </Field>
+                        placeholder="Choose Your team"/>
                     <Field 
                         name="from" 
                         type="date" 
@@ -130,8 +125,7 @@ class Reservation extends React.Component {
                         index={3}
                         onChange={event => this.handleChangeDate(event)}
                         placeholder="From" 
-                        justify="right" 
-                    />
+                        justify="right"/>
                     <Field 
                         name="to" 
                         type="date" 
@@ -139,9 +133,8 @@ class Reservation extends React.Component {
                         index={4}
                         onChange={event => this.handleChangeDate(event)}
                         placeholder="To"
-                        justify="left"
-                    />
-                    <Button type="submit">Submit</Button>
+                        justify="left"/>
+                    <Button data-test="submit" type="submit">Submit</Button>
                 </Form>
                 <Modal 
                     show={this.state.isOpen}

@@ -4,10 +4,10 @@ import dateFns, { addMonths } from 'date-fns';
 import { IconPicker } from '../../components/index';
 import { connect } from 'react-redux';
 
-const week = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-      months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+export class Calendar extends React.Component {
 
-class Calendar extends React.Component {
+    week = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+    months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
     constructor(props){
         super(props);
@@ -26,23 +26,23 @@ class Calendar extends React.Component {
 
         while(start < end){
             table.push({
-                day: week[start % 7],
+                day: this.week[start % 7],
                 month: dateFns.getMonth(addMonths(new Date(), this.state.currentDay)),
                 year: dateFns.getYear(addMonths(new Date(), this.state.currentDay)),
                 thisMounth: true
             });
             start++;
         }
-        while(table[0].day !== week[0]){
+        while(table[0].day !== this.week[0]){
             table.unshift({
-                 day: week[week.indexOf(table[0].day) - 1],
+                 day: this.week[this.week.indexOf(table[0].day) - 1],
                  thisMounth: false
             });
 
         }
-        while(table[table.length - 1].day !== week[6]){
+        while(table[table.length - 1].day !== this.week[6]){
             table.push({
-                 day: week[week.indexOf(table[table.length - 1].day) + 1],
+                 day: this.week[this.week.indexOf(table[table.length - 1].day) + 1],
                  thisMounth: false
             });
         }
@@ -88,27 +88,6 @@ class Calendar extends React.Component {
         );
     }
     
-    render(){
-        return(
-            <MainContainer>
-                {week.map((element, index) => {
-                    return <div key={index}>{element}</div>;
-                })}
-                {this.showCalendar()}
-
-                <Button next={false} onClick={() => this.changeMounth(false)}>
-                    <IconPicker name="arrow-left" width={20} height={20}/>
-                </Button>
-                <CurrentMounth>
-                    <span>{months[dateFns.getMonth(addMonths(new Date(), this.state.currentDay))]}</span> {dateFns.getYear(addMonths(new Date(), this.state.currentDay))}
-                </CurrentMounth>
-                <Button next={true} onClick={() => this.changeMounth(true)}>
-                    <IconPicker name="arrow-right" width={20} height={20}/>
-                </Button>
-            </MainContainer>
-        )
-    }
-
     changeMounth(next){
         let currentDay = this.state.currentDay;
         next ? currentDay++ : currentDay--;
@@ -118,6 +97,26 @@ class Calendar extends React.Component {
             numberOfDays: dateFns.getDaysInMonth(addMonths(new Date(), currentDay)),
             firstDayOfMounth: dateFns.startOfMonth(addMonths(new Date(), currentDay)).getDay()
         });
+    }
+
+    render(){
+        return(
+            <MainContainer>
+                {this.week.map((element, index) => {
+                    return <div key={index}>{element}</div>;
+                })}
+                {this.showCalendar()}
+                <Button data-test="button-left" next={false} onClick={() => this.changeMounth(false)}>
+                    <IconPicker name="arrow-left" width={20} height={20}/>
+                </Button>
+                <CurrentMounth>
+                    <span data-test="date">{this.months[dateFns.getMonth(addMonths(new Date(), this.state.currentDay))]}</span> {dateFns.getYear(addMonths(new Date(), this.state.currentDay))}
+                </CurrentMounth>
+                <Button data-test="button-right" next={true} onClick={() => this.changeMounth(true)}>
+                    <IconPicker name="arrow-right" width={20} height={20}/>
+                </Button>
+            </MainContainer>
+        )
     }
 }
 

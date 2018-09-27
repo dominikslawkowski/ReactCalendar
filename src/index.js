@@ -9,9 +9,19 @@ import reducers from './reducers';
 
 const createStoreWithMiddleware = applyMiddleware()(createStore);
 
+export class TestProvider extends React.Component {
+    render(){
+        return(
+            <Provider store={createStoreWithMiddleware(reducers)}>
+                <App />
+            </Provider>
+        )    
+    };
+}
+
+const _provider = new TestProvider();
+
 ReactDOM.render(
-    <Provider store={createStoreWithMiddleware(reducers)}>
-        <App />
-    </Provider>
+    _provider.render()
     , document.getElementById('root'));
 registerServiceWorker();

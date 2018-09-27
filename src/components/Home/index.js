@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { Container, Title, Subtitle, Button, MainContainer } from './style';
  
 export class Home extends React.Component{
@@ -8,11 +7,11 @@ export class Home extends React.Component{
     return(
         <MainContainer>
             <Container>
-                <Title id="test">Korpex Calendar</Title>
-                <Subtitle>Book the date of your holiday</Subtitle>
-                <Link to="/reservation">
-                <Button>Reservation</Button>
-                </Link>
+                <Title data-test="title">Korpex Calendar</Title>
+                <Subtitle data-test="subtitle">Book the date of your holiday</Subtitle>
+                <Button data-test="button" onClick={() => this.props.history.push('/calendar')}>
+                    Reservation
+                </Button>
             </Container>
         </MainContainer>
     );

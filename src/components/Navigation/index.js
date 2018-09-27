@@ -1,51 +1,59 @@
 import React from 'react';
-import { Nav, Span, Border, StyledLink } from './style';
+import { Nav, Span, Border, StyledLink, SpanLink } from './style';
 import { IconPicker } from '../index';
 import {withRouter} from 'react-router-dom';
 
 export const Navigation = withRouter(props => <Menu {...props}/>);
 
 export class Menu extends React.Component {
+
+    navDate = [['home', '/'], ['calendar'], ['reservation'], ['teams']];
+
+    returnPath(){
+        return this.props.location.pathname;
+    }
+
     render(){
         return(
           <Nav>
             <Span>KorpeX</Span>
             <Border />
-            <StyledLink to="/" currentpath={this.props.location.pathname}>
+            <StyledLink data-test="home" to="/" currentpath={this.props.location.pathname}>
                 <IconPicker 
-                    name="home" 
+                    name="home"
                     width={20} 
-                    height={20} 
-                /> 
-                <span>Home</span>
+                    height={20}
+                    currentpath={this.props.location.pathname} /> 
+                <SpanLink to="/" currentpath={this.props.location.pathname}>Home</SpanLink>
             </StyledLink>
-            <StyledLink to="/calendar" currentpath={this.props.location.pathname}>
+
+            <StyledLink data-test="calendar" to="/calendar" currentpath={this.returnPath()}>
                 <IconPicker 
                     name="calendar" 
                     width={20} 
-                    height={20} 
-                /> 
-                <span>Calendar</span>
+                    height={20}
+                    currentpath={this.returnPath()} /> 
+                <SpanLink to="/calendar" currentpath={this.returnPath()}>Calendar</SpanLink>
             </StyledLink>
-            <StyledLink to="/reservation" currentpath={this.props.location.pathname}>
+
+            <StyledLink data-test="reservation" to="/reservation" currentpath={this.props.location.pathname}>
                  <IconPicker 
                     name="reservation"
                     width={20} 
                     height={20} 
-                    currentPath={this.props.location.pathname}
-                /> 
-                <span>Reservation</span>
+                    currentpath={this.props.location.pathname} /> 
+                <SpanLink to="/reservation" currentpath={this.props.location.pathname}>Reservation</SpanLink>
             </StyledLink>
-            <StyledLink to="/teams" currentpath={this.props.location.pathname}>
+
+            <StyledLink data-test="teams" to="/teams" currentpath={this.props.location.pathname}>
                  <IconPicker 
                     name="teams" 
                     width={20} 
                     height={20} 
-                    currentPath={this.props.location.pathname}
-                /> 
-                <span>Teams</span>
+                    currentpath={this.props.location.pathname} /> 
+                <SpanLink to="/teams" currentpath={this.props.location.pathname}>Teams</SpanLink>
             </StyledLink>
           </Nav>
         )
     }
-}; 
+};

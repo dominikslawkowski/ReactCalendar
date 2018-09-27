@@ -55,8 +55,9 @@ export const StyledLink = styled(Link)`
         fill: ${props => (props.to === props.currentpath) ? '#81FBB8' : 'black'};
         transition: all .1s linear;
     }
-    > span {
-        color: ${props => (props.to === props.currentpath) ? '#81FBB8' : 'black'};
-        transition: all .1s linear;
-    }
+`;
+
+export const SpanLink = styled.span`
+    color: ${props => (props.to === props.currentpath) ? '#81FBB8' : 'black'};
+    transition: all .1s linear;
 `;

@@ -6,7 +6,7 @@ import { Container, Title, FieldInput, Button, MainContainer } from './style';
 import { IconPicker } from '../../components/index';
 import { Modal } from '../../components/index';
 
-class Teams extends React.Component {
+export class Teams extends React.Component {
     
     state = {
         isOpen: false,
@@ -75,12 +75,11 @@ class Teams extends React.Component {
         return (
             <MainContainer>
                 {this.renderTeams()}
-                
-                <Container last="true" onClick={()=>this.toggleModal()}>
+                <Container data-test="last-container" last="true" onClick={()=>this.toggleModal()}>
                     <Title color="#ccc">Add team</Title>
                     <IconPicker name="add" width={40} height={40}/>
                 </Container>
-                <Modal id="test" show={this.state.isOpen} onClose={this.toggleModal} marginTop="35px" marginBottom="10px">
+                <Modal show={this.state.isOpen} onClose={this.toggleModal} marginTop="35px" marginBottom="10px">
                    <form id="form" onSubmit={handleSubmit(this.onSubmit.bind(this))}>
                        <Field name="name" type="text" placeholder="Team name" component={this.renderInput} onChange={event => this.handleChange(event)}/>
                        <Button type="submit" style={{marginTop: '8px'}}>Add</Button>
