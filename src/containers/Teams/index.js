@@ -8,14 +8,19 @@ import { Modal } from '../../components/index';
 
 export class Teams extends React.Component {
     
-    state = {
-        isOpen: false,
-        name: ''
+    constructor(props){
+        super(props);
+        this.state = {
+            isOpen: false,
+            name: ''
+        }
+        this.renderInput = this.renderInput.bind(this);
     }
 
     toggleModal = () => {
         this.setState({
-          isOpen: !this.state.isOpen
+          isOpen: !this.state.isOpen,
+          name: ''
         });
     }
     
@@ -46,6 +51,7 @@ export class Teams extends React.Component {
                     {...field.input}
                     type={field.type}
                     placeholder={field.placeholder}
+                    value={this.state.name}
                 />
                 {field.meta.touched && field.meta.error && <span>{field.meta.error}</span>}
            </FieldInput>
@@ -66,8 +72,13 @@ export class Teams extends React.Component {
     }
 
     onSubmit(values){
-       this.props.addTeam(values.name);
-       this.toggleModal();
+        const sameName = this.props.team.some(element => {
+            return values.name === element
+        })
+        if(!sameName){
+            this.props.addTeam(values.name);
+            this.toggleModal();
+        }
     }
 
     render(){
@@ -92,6 +103,7 @@ export class Teams extends React.Component {
 
 const validate = (value) => {
     const errors = {};
+
     if(!value.name){
         errors.name = "Name is required.";
     }

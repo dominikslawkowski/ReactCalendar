@@ -9,8 +9,8 @@ export class Home extends React.Component{
             <Container>
                 <Title data-test="title">Korpex Calendar</Title>
                 <Subtitle data-test="subtitle">Book the date of your holiday</Subtitle>
-                <Button data-test="button" onClick={() => this.props.history.push('/calendar')}>
-                    Reservation
+                <Button data-test="button" onClick={() => this.props.history.push('/reservation')}>
+                Reservation
                 </Button>
             </Container>
         </MainContainer>
